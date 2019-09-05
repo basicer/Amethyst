@@ -24,6 +24,7 @@ final class WindowManager<Application: ApplicationType>: NSObject {
     private let screens = Screens()
     private var activeIDCache: Set<CGWindowID> = Set()
     private var floatingMap: [CGWindowID: Bool] = [:]
+    private var sizeMap: [CGWindowID: CGRect] = [:]
     private var lastReflowTime = Date()
     private var lastFocusDate: Date?
 
@@ -191,7 +192,18 @@ final class WindowManager<Application: ApplicationType>: NSObject {
         for window in windows {
             if let screen = window.screen(), window == focusedWindow {
                 let windowChange: Change = windowIsFloating(window) ? .add(window: window) : .remove(window: window)
-                floatingMap[window.windowID()] = !windowIsFloating(window)
+
+                if windowIsFloating(window) {
+                    sizeMap[window.windowID()] = window.frame()
+                    floatingMap[window.windowID()] = false
+                } else {
+                    floatingMap[window.windowID()] = true
+                    if let frame = sizeMap[window.windowID()] {
+                        window.setFrame(frame, withThreshold: CGSize(width: 1, height: 1))
+                    }
+
+                }
+
                 markScreenForReflow(screen, withChange: windowChange)
                 return
             }
@@ -329,6 +341,7 @@ extension WindowManager {
             return
         }
 
+        sizeMap[window.windowID()] = window.frame()
         switch application.defaultFloatForWindowWithTitle(window.title()) {
         case .unreliable where retries > 0:
             return DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
