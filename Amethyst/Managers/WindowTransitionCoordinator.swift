@@ -28,6 +28,8 @@ protocol WindowTransitionTarget: class {
     func screen(at index: Int) -> NSScreen?
     func nextScreenIndexClockwise(from screen: NSScreen) -> Int
     func nextScreenIndexCounterClockwise(from screen: NSScreen) -> Int
+    func toggleFloatForFocusedWindow()
+
 }
 
 extension WindowTransitionTarget {
@@ -47,17 +49,46 @@ class WindowTransitionCoordinator<Target: WindowTransitionTarget> {
         self.target = target
     }
 
-    func swapFocusedWindowToMain() {
-        guard let focusedWindow = Window.currentlyFocused(), !target.windowActivityCache.windowIsFloating(focusedWindow), let screen = focusedWindow.screen() else {
-            return
+    func unfloatFocusedWindowIfNeeded(focusedWindow: Window) -> Int? {
+
+        //TODO: Add setting
+        if target.windowActivityCache.windowIsFloating(focusedWindow) {
+            target.toggleFloatForFocusedWindow()
+        }
+
+        if target.windowActivityCache.windowIsFloating(focusedWindow) {
+            return nil
+        }
+
+        guard let screen = focusedWindow.screen() else {
+            return nil
         }
 
         let windows = target.activeWindows(on: screen)
 
-        guard let focusedIndex = windows.index(of: focusedWindow) else {
+        let focusedIndex = windows.index(of: focusedWindow)
+
+        if focusedIndex != nil {
+            return focusedIndex!
+        }
+
+        return windows.index(of: focusedWindow)
+    }
+
+    func swapFocusedWindowToMain() {
+        guard let focusedWindow = Window.currentlyFocused() else {
             return
         }
 
+        guard let focusedIndex = unfloatFocusedWindowIfNeeded(focusedWindow: focusedWindow) else {
+            return
+        }
+
+        guard let screen = focusedWindow.screen() else {
+            return
+        }
+
+        let windows = target.activeWindows(on: screen)
         // if there are 2 windows, we can always swap.  Just make sure we don't swap focusedWindow with itself.
         switch windows.count {
         case 1:
@@ -70,8 +101,11 @@ class WindowTransitionCoordinator<Target: WindowTransitionTarget> {
     }
 
     func swapFocusedWindowCounterClockwise() {
-        guard let focusedWindow = Window.currentlyFocused(), !target.windowActivityCache.windowIsFloating(focusedWindow) else {
-            target.executeTransition(.resetFocus)
+        guard let focusedWindow = Window.currentlyFocused() else {
+            return
+        }
+
+        guard let focusedWindowIndex = unfloatFocusedWindowIfNeeded(focusedWindow: focusedWindow) else {
             return
         }
 
@@ -80,19 +114,17 @@ class WindowTransitionCoordinator<Target: WindowTransitionTarget> {
         }
 
         let windows = target.activeWindows(on: screen)
-
-        guard let focusedWindowIndex = windows.index(of: focusedWindow) else {
-            return
-        }
-
         let windowToSwapWith = windows[(focusedWindowIndex == 0 ? windows.count - 1 : focusedWindowIndex - 1)]
 
         target.executeTransition(.switchWindows(focusedWindow, windowToSwapWith))
     }
 
     func swapFocusedWindowClockwise() {
-        guard let focusedWindow = Window.currentlyFocused(), !target.windowActivityCache.windowIsFloating(focusedWindow) else {
-            target.executeTransition(.resetFocus)
+        guard let focusedWindow = Window.currentlyFocused() else {
+            return
+        }
+
+        guard let focusedWindowIndex = unfloatFocusedWindowIfNeeded(focusedWindow: focusedWindow) else {
             return
         }
 
@@ -101,11 +133,6 @@ class WindowTransitionCoordinator<Target: WindowTransitionTarget> {
         }
 
         let windows = target.activeWindows(on: screen)
-
-        guard let focusedWindowIndex = windows.index(of: focusedWindow) else {
-            return
-        }
-
         let windowToSwapWith = windows[(focusedWindowIndex + 1) % windows.count]
 
         target.executeTransition(.switchWindows(focusedWindow, windowToSwapWith))
