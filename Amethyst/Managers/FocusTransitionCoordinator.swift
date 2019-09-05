@@ -76,6 +76,38 @@ class FocusTransitionCoordinator<Target: FocusTransitionTarget> {
         windowToFocus.focus()
     }
 
+    func moveFocusLeft() {
+        guard let focusedWindow = Window.currentlyFocused() else {
+            focusScreen(at: 0)
+            return
+        }
+        focusedWindow.focusLeft()
+    }
+
+    func moveFocusDown() {
+        guard let focusedWindow = Window.currentlyFocused() else {
+            focusScreen(at: 0)
+            return
+        }
+        focusedWindow.focusDown()
+    }
+
+    func moveFocusUp() {
+        guard let focusedWindow = Window.currentlyFocused() else {
+            focusScreen(at: 0)
+            return
+        }
+        focusedWindow.focusUp()
+    }
+
+    func moveFocusRight() {
+        guard let focusedWindow = Window.currentlyFocused() else {
+            focusScreen(at: 0)
+            return
+        }
+        focusedWindow.focusRight()
+    }
+
     func moveFocusClockwise() {
         guard let focusedWindow = Window.currentlyFocused() else {
             focusScreen(at: 0)

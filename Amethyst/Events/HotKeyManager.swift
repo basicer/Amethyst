@@ -136,6 +136,19 @@ final class HotKeyManager<Application: ApplicationType>: NSObject {
             windowManager.focusTransitionCoordinator.moveFocusScreenClockwise()
         }
 
+        constructCommandWithCommandKey(CommandKey.focusUp.rawValue) {
+            windowManager.focusTransitionCoordinator.moveFocusUp()
+        }
+        constructCommandWithCommandKey(CommandKey.focusDown.rawValue) {
+            windowManager.focusTransitionCoordinator.moveFocusDown()
+        }
+        constructCommandWithCommandKey(CommandKey.focusLeft.rawValue) {
+            windowManager.focusTransitionCoordinator.moveFocusLeft()
+        }
+        constructCommandWithCommandKey(CommandKey.focusRight.rawValue) {
+            windowManager.focusTransitionCoordinator.moveFocusRight()
+        }
+
         constructCommandWithCommandKey(CommandKey.swapScreenCCW.rawValue) {
             windowManager.windowTransitionCoordinator.swapFocusedWindowScreenCounterClockwise()
         }
@@ -365,6 +378,10 @@ final class HotKeyManager<Application: ApplicationType>: NSObject {
             hotKeyNameToDefaultsKey.append([commandName, commandKey])
         }
 
+        hotKeyNameToDefaultsKey.append(["Move focus up", CommandKey.focusUp.rawValue])
+        hotKeyNameToDefaultsKey.append(["Move focus down", CommandKey.focusDown.rawValue])
+        hotKeyNameToDefaultsKey.append(["Move focus left", CommandKey.focusLeft.rawValue])
+        hotKeyNameToDefaultsKey.append(["Move focus right", CommandKey.focusRight.rawValue])
         return hotKeyNameToDefaultsKey
     }
 }

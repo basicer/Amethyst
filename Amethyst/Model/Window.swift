@@ -103,6 +103,11 @@ protocol WindowType: Equatable {
          - spaceID: The id of the space.
      */
     func move(toSpace spaceID: CGSSpaceID)
+
+    func focusLeft()
+    func focusDown()
+    func focusRight()
+    func focusUp()
 }
 
 /**
