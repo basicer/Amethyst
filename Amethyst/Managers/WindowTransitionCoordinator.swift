@@ -51,8 +51,8 @@ class WindowTransitionCoordinator<Target: WindowTransitionTarget> {
 
     func unfloatFocusedWindowIfNeeded(focusedWindow: Window) -> Int? {
 
-        //TODO: Add setting
-        if target.windowActivityCache.windowIsFloating(focusedWindow) {
+        let userConfiguration = UserConfiguration.shared
+        if target.windowActivityCache.windowIsFloating(focusedWindow) && userConfiguration.autoSink() {
             target.toggleFloatForFocusedWindow()
         }
 

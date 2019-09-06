@@ -17,11 +17,11 @@
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customView id="LsO-9M-hEw" userLabel="Floating Preferences">
-            <rect key="frame" x="0.0" y="0.0" width="548" height="425"/>
+            <rect key="frame" x="0.0" y="0.0" width="548" height="440"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <scrollView focusRingType="none" fixedFrame="YES" borderType="line" autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U6O-Ka-pXq" userLabel="Application IDs">
-                    <rect key="frame" x="20" y="20" width="189" height="230"/>
+                    <rect key="frame" x="20" y="19" width="189" height="230"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <clipView key="contentView" focusRingType="none" ambiguous="YES" drawsBackground="NO" id="RT8-fN-JDO">
                         <rect key="frame" x="1" y="1" width="187" height="228"/>
@@ -102,7 +102,7 @@
                     </connections>
                 </button>
                 <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9hq-U6-t9B">
-                    <rect key="frame" x="192" y="387" width="148" height="18"/>
+                    <rect key="frame" x="192" y="402" width="148" height="18"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <buttonCell key="cell" type="check" title="Float small windows" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="phj-M8-HfQ">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -113,7 +113,7 @@
                     </connections>
                 </button>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Mqz-bw-Kwm">
-                    <rect key="frame" x="133" y="388" width="55" height="17"/>
+                    <rect key="frame" x="133" y="403" width="55" height="17"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="General:" id="OZb-cJ-WUP">
                         <font key="font" metaFont="system"/>
@@ -122,7 +122,7 @@
                     </textFieldCell>
                 </textField>
                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Q7b-oi-oDI">
-                    <rect key="frame" x="192" y="353" width="289" height="28"/>
+                    <rect key="frame" x="192" y="368" width="289" height="28"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="This option is recommended to avoid tiling dialogs for some applications." id="GHB-Qd-gAx">
                         <font key="font" metaFont="message" size="11"/>
@@ -317,8 +317,19 @@
                         </subviews>
                     </view>
                 </box>
+                <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mk6-Rs-UAp">
+                    <rect key="frame" x="192" y="344" width="148" height="18"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <buttonCell key="cell" type="check" title="Auto sink windows" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="JrR-6O-SnN">
+                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <binding destination="XhK-Tn-zrU" name="value" keyPath="values.auto-sink" id="cRY-M9-UDV"/>
+                    </connections>
+                </button>
             </subviews>
-            <point key="canvasLocation" x="561" y="216.5"/>
+            <point key="canvasLocation" x="561" y="224"/>
         </customView>
         <userDefaultsController id="XhK-Tn-zrU"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>

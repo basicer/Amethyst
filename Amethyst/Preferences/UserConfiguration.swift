@@ -88,6 +88,7 @@ enum ConfigurationKey: String {
     case screenPaddingTop = "screen-padding-top"
     case screenPaddingBottom = "screen-padding-bottom"
     case debugLayoutInfo = "debug-layout-info"
+    case autoSink = "auto-sink"
 }
 
 extension ConfigurationKey: CaseIterable {}
@@ -573,6 +574,9 @@ final class UserConfiguration: NSObject {
 
     func followWindowsThrownBetweenSpaces() -> Bool {
         return storage.bool(forKey: .followSpaceThrownWindows)
+    }
+    func autoSink() -> Bool {
+        return storage.bool(forKey: .autoSink)
     }
 }
 
