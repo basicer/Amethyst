@@ -24,9 +24,11 @@ protocol ConfigurationStorage {
     func bool(forKey key: ConfigurationKey) -> Bool
     func float(forKey key: ConfigurationKey) -> Float
     func stringArray(forKey key: ConfigurationKey) -> [String]?
+    func string(forKey key: ConfigurationKey) -> String?
 
     func set(_ value: Any?, forKey key: ConfigurationKey)
     func set(_ value: Bool, forKey key: ConfigurationKey)
+    func set(  value: String, forKey key: ConfigurationKey)
 }
 
 extension UserDefaults: ConfigurationStorage {
@@ -50,11 +52,19 @@ extension UserDefaults: ConfigurationStorage {
         return stringArray(forKey: key.rawValue)
     }
 
+    func string(forKey key: ConfigurationKey) -> String? {
+        return string(forKey: key.rawValue)
+    }
+
     func set(_ value: Any?, forKey key: ConfigurationKey) {
         set(value, forKey: key.rawValue)
     }
 
     func set(_ value: Bool, forKey key: ConfigurationKey) {
+        set(value, forKey: key.rawValue)
+    }
+
+    func set(  value: String, forKey key: ConfigurationKey) {
         set(value, forKey: key.rawValue)
     }
 }
@@ -89,6 +99,7 @@ enum ConfigurationKey: String {
     case screenPaddingBottom = "screen-padding-bottom"
     case debugLayoutInfo = "debug-layout-info"
     case autoSink = "auto-sink"
+    case terminalBundle = "terminal-bundle"
 }
 
 extension ConfigurationKey: CaseIterable {}
@@ -124,6 +135,7 @@ enum CommandKey: String {
     case focusDown = "focus-down"
     case focusLeft = "focus-left"
     case focusRight = "focus-right"
+    case terminal = "terminal"
 }
 
 protocol UserConfigurationDelegate: AnyObject {
@@ -577,6 +589,12 @@ final class UserConfiguration: NSObject {
     }
     func autoSink() -> Bool {
         return storage.bool(forKey: .autoSink)
+    }
+    func terminalBundle() -> String {
+        return storage.string(forKey: .terminalBundle) ?? "com.apple.Terminal"
+    }
+    func setTerminalBundle(bundle: String) {
+        return storage.set(value: bundle, forKey: .terminalBundle)
     }
 }
 

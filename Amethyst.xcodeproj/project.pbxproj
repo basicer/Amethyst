@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		1A4B46EB20AA7717003D5110 /* NSTableView+Amethyst.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A4B46EA20AA7717003D5110 /* NSTableView+Amethyst.swift */; };
 		400540F22325CDF4004B8656 /* Reliability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 400540F12325CDF4004B8656 /* Reliability.swift */; };
+		21980B1E2324747D0065E9B6 /* Terminal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21980B1D2324747D0065E9B6 /* Terminal.swift */; };
+		21980B21232757FF0065E9B6 /* ITerm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21980B20232757FE0065E9B6 /* ITerm.swift */; };
+		21980B232327582C0065E9B6 /* Base.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21980B222327582C0065E9B6 /* Base.swift */; };
 		4006CF881CDFF5F6004CA512 /* NSRunningApplication+Manageable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4006CF871CDFF5F6004CA512 /* NSRunningApplication+Manageable.swift */; };
 		4006CF8C1CDFF743004CA512 /* NSScreen+Amethyst.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4006CF8B1CDFF743004CA512 /* NSScreen+Amethyst.swift */; };
 		4006CF8E1CDFFE90004CA512 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4006CF8D1CDFFE90004CA512 /* AppDelegate.swift */; };
@@ -104,6 +107,9 @@
 /* Begin PBXFileReference section */
 		1A490D6DCEEB1686189A3E68 /* Pods_AmethystTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AmethystTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A4B46EA20AA7717003D5110 /* NSTableView+Amethyst.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSTableView+Amethyst.swift"; sourceTree = "<group>"; };
+		21980B1D2324747D0065E9B6 /* Terminal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Terminal.swift; sourceTree = "<group>"; };
+		21980B20232757FE0065E9B6 /* ITerm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ITerm.swift; sourceTree = "<group>"; };
+		21980B222327582C0065E9B6 /* Base.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Base.swift; sourceTree = "<group>"; };
 		22CAB58F56F91369E2D69B06 /* Pods_Amethyst.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Amethyst.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B6FF5614ED7F7BAE9D4A60C /* Pods-AmethystTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AmethystTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AmethystTests/Pods-AmethystTests.debug.xcconfig"; sourceTree = "<group>"; };
 		400540F12325CDF4004B8656 /* Reliability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reliability.swift; sourceTree = "<group>"; };
@@ -211,6 +217,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		21980B1F232474860065E9B6 /* Scripting */ = {
+			isa = PBXGroup;
+			children = (
+				21980B20232757FE0065E9B6 /* ITerm.swift */,
+				21980B1D2324747D0065E9B6 /* Terminal.swift */,
+				21980B222327582C0065E9B6 /* Base.swift */,
+			);
+			path = Scripting;
+			sourceTree = "<group>";
+		};
 		4008E724190C4D9D0049E2F6 /* Preferences */ = {
 			isa = PBXGroup;
 			children = (
@@ -328,6 +344,7 @@
 		402DB6E71742E41A00D1C936 /* Amethyst */ = {
 			isa = PBXGroup;
 			children = (
+				21980B1F232474860065E9B6 /* Scripting */,
 				4046EFCD2236018400113067 /* Model */,
 				401BC8AA1CE8F82700F89B3F /* Managers */,
 				4008E724190C4D9D0049E2F6 /* Preferences */,
@@ -706,6 +723,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				21980B232327582C0065E9B6 /* Base.swift in Sources */,
 				40AF71DD20BB401400F58EA9 /* FloatingPreferencesViewController.swift in Sources */,
 				402DB6EE1742E41A00D1C936 /* main.m in Sources */,
 				4046EFD12238949900113067 /* Application.swift in Sources */,
@@ -718,9 +736,11 @@
 				401BC89C1CE8D58A00F89B3F /* ShortcutsPreferencesListItemView.swift in Sources */,
 				400540F22325CDF4004B8656 /* Reliability.swift in Sources */,
 				4029C4F11C112478001E4788 /* Layout.swift in Sources */,
+				21980B1E2324747D0065E9B6 /* Terminal.swift in Sources */,
 				401BC8A41CE8DB0800F89B3F /* GeneralPreferencesViewController.swift in Sources */,
 				4046EFCF2236019400113067 /* Window.swift in Sources */,
 				401BC8A61CE8E65D00F89B3F /* LayoutNameWindow.swift in Sources */,
+				21980B21232757FF0065E9B6 /* ITerm.swift in Sources */,
 				401C35AF2241BBDD0019ED07 /* ReflowOperation.swift in Sources */,
 				401BC8B41CE9250800F89B3F /* HotKeyRegistrar.swift in Sources */,
 				40637073224EF9B20081299D /* Change.swift in Sources */,

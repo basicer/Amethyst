@@ -9,6 +9,7 @@
 import Foundation
 import MASShortcut
 import Silica
+import ScriptingBridge
 
 // Type for defining key code.
 typealias AMKeyCode = Int
@@ -219,6 +220,27 @@ final class HotKeyManager<Application: ApplicationType>: NSObject {
             self.userConfiguration.toggleFocusFollowsMouse()
         }
 
+        constructCommandWithCommandKey(CommandKey.terminal.rawValue) {
+            let bundle = UserConfiguration.shared.terminalBundle()
+            if var base = NSAppleEventDescriptor(bundleIdentifier: bundle).aeDesc?.pointee {
+                if #available(macOS 10.14, *) {
+                    _ = AEDeterminePermissionToAutomateTarget(&base, typeWildCard, typeWildCard, true)
+                            AEDisposeDesc(&base)
+                }
+            }
+            if bundle == "com.apple.Terminal" {
+                let app: TerminalApplication? = SBApplication(bundleIdentifier: bundle)
+                _ = app?.doScript?(nil, in: nil)
+                app?.activate()
+            } else if bundle == "com.googlecode.iterm2" {
+                let app: ITermApplication? = SBApplication(bundleIdentifier: bundle)
+                _ = app?.createWindowWithDefaultProfileCommand?(nil)
+                app?.activate()
+            } else {
+                NSWorkspace.shared.launchApplication(withBundleIdentifier: bundle, options: .newInstance, additionalEventParamDescriptor: nil, launchIdentifier: nil)
+            }
+        }
+
         LayoutManager<Application.Window>.availableLayoutStrings().forEach { (layoutKey, _) in
             self.constructCommandWithCommandKey(UserConfiguration.constructLayoutKeyString(layoutKey)) {
                 let screenManager: ScreenManager<Application.Window>? = windowManager.focusedScreenManager()
@@ -331,7 +353,7 @@ final class HotKeyManager<Application: ApplicationType>: NSObject {
 
     static func hotKeyNameToDefaultsKey() -> [[String]] {
         var hotKeyNameToDefaultsKey: [[String]] = []
-
+        hotKeyNameToDefaultsKey.append(["Terminal", CommandKey.terminal.rawValue])
         hotKeyNameToDefaultsKey.append(["Cycle layout forward", CommandKey.cycleLayoutForward.rawValue])
         hotKeyNameToDefaultsKey.append(["Cycle layout backwards", CommandKey.cycleLayoutBackward.rawValue])
         hotKeyNameToDefaultsKey.append(["Shrink main pane", CommandKey.shrinkMain.rawValue])

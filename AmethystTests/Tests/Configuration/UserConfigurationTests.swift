@@ -34,6 +34,10 @@ fileprivate final class TestConfigurationStorage: ConfigurationStorage {
         return storage[key] as? [String]
     }
 
+    func string(forKey key: ConfigurationKey) -> String {
+        return (storage[key] as? String) ?? ""
+    }
+
     func set(_ value: Any?, forKey key: ConfigurationKey) {
         storage[key] = value
     }
