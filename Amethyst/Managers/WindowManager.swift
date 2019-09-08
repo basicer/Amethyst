@@ -20,6 +20,8 @@ final class WindowManager<Application: ApplicationType>: NSObject {
     private(set) lazy var windowTransitionCoordinator = WindowTransitionCoordinator(target: self)
     private(set) lazy var focusTransitionCoordinator = FocusTransitionCoordinator(target: self)
 
+    var lastSwap: (Int, Int)?
+
     private var applications: [AnyApplication<Application>] = []
     private let screens = Screens()
     private var activeIDCache: Set<CGWindowID> = Set()
@@ -647,16 +649,23 @@ extension WindowManager {
 
 extension WindowManager: WindowTransitionTarget {
     func executeTransition(_ transition: WindowTransition<Window>) {
+
         switch transition {
         case let .switchWindows(window, otherWindow):
             guard let windowIndex = windows.index(of: window), let otherWindowIndex = windows.index(of: otherWindow) else {
                 return
             }
 
-            guard windowIndex != otherWindowIndex else { return }
+            if windowIndex == otherWindowIndex {
+                if lastSwap != nil {
+                    executeTransition(.switchWindows(windows[lastSwap!.1], windows[lastSwap!.0]))
+                }
+                return
+            }
 
             windows[windowIndex] = otherWindow
             windows[otherWindowIndex] = window
+            lastSwap = (windowIndex, otherWindowIndex)
 
             markAllScreensForReflowWithChange(.windowSwap(window: window, otherWindow: otherWindow))
         case let .moveWindowToScreen(window, screen):
