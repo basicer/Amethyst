@@ -137,16 +137,16 @@ final class HotKeyManager<Application: ApplicationType>: NSObject {
         }
 
         constructCommandWithCommandKey(CommandKey.focusUp.rawValue) {
-            windowManager.focusTransitionCoordinator.moveFocusUp()
+            windowManager.focusTransitionCoordinator.focusDirection(dir: .up)
         }
         constructCommandWithCommandKey(CommandKey.focusDown.rawValue) {
-            windowManager.focusTransitionCoordinator.moveFocusDown()
+            windowManager.focusTransitionCoordinator.focusDirection(dir: .down)
         }
         constructCommandWithCommandKey(CommandKey.focusLeft.rawValue) {
-            windowManager.focusTransitionCoordinator.moveFocusLeft()
+            windowManager.focusTransitionCoordinator.focusDirection(dir: .left)
         }
         constructCommandWithCommandKey(CommandKey.focusRight.rawValue) {
-            windowManager.focusTransitionCoordinator.moveFocusRight()
+            windowManager.focusTransitionCoordinator.focusDirection(dir: .right)
         }
 
         constructCommandWithCommandKey(CommandKey.swapScreenCCW.rawValue) {

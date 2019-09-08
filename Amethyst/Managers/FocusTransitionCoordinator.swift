@@ -27,6 +27,7 @@ protocol FocusTransitionTarget: class {
     func screen(at index: Int) -> NSScreen?
     func nextWindowIDClockwise(on screen: NSScreen) -> CGWindowID?
     func nextWindowIDCounterClockwise(on screen: NSScreen) -> CGWindowID?
+    func findWindowInDirection(win: Window, dir: Direction) -> Window?
     func nextScreenIndexClockwise(from screen: NSScreen) -> Int
     func nextScreenIndexCounterClockwise(from screen: NSScreen) -> Int
 }
@@ -76,36 +77,17 @@ class FocusTransitionCoordinator<Target: FocusTransitionTarget> {
         windowToFocus.focus()
     }
 
-    func moveFocusLeft() {
+    func focusDirection(dir: Direction) {
         guard let focusedWindow = Window.currentlyFocused() else {
             focusScreen(at: 0)
             return
         }
-        focusedWindow.focusLeft()
-    }
 
-    func moveFocusDown() {
-        guard let focusedWindow = Window.currentlyFocused() else {
-            focusScreen(at: 0)
+        guard let win: Window = target.findWindowInDirection(win: focusedWindow, dir: dir) else {
             return
         }
-        focusedWindow.focusDown()
-    }
 
-    func moveFocusUp() {
-        guard let focusedWindow = Window.currentlyFocused() else {
-            focusScreen(at: 0)
-            return
-        }
-        focusedWindow.focusUp()
-    }
-
-    func moveFocusRight() {
-        guard let focusedWindow = Window.currentlyFocused() else {
-            focusScreen(at: 0)
-            return
-        }
-        focusedWindow.focusRight()
+        win.focus()
     }
 
     func moveFocusClockwise() {

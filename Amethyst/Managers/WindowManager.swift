@@ -673,6 +673,48 @@ extension WindowManager: WindowTransitionTarget {
 }
 
 extension WindowManager: FocusTransitionTarget {
+
+    func findWindowInDirection(win: Application.Window, dir: Direction) ->  Application.Window? {
+        guard let manager = screenManager(for: win.screen()!) else {
+            return nil
+        }
+        if let dirLayout: DirectionalLayout = manager.currentLayout as? DirectionalLayout {
+            return dirLayout.findWindowInDirection(source: win, dir: dir)
+        }
+        let found: [SIWindow]?
+        switch dir {
+        case .down:
+            found = win.windowsToSouth()
+        case .up:
+            found = win.windowsToNorth()
+        case .left:
+            found = win.windowsToWest()
+        case .right:
+            found = win.windowsToEast()
+        }
+
+        if found == nil {
+            return nil
+        }
+
+        for window in found! {
+            if let fff: Application.Window = findWinowById(id: window.windowID()) {
+                return fff
+            }
+        }
+
+        return nil
+    }
+
+    func findWinowById(id: CGWindowID) -> Application.Window? {
+        for win in self.windows {
+            if id == win.windowID() {
+                return win
+            }
+        }
+        return nil
+    }
+
     var windowActivityCache: WindowActivityCache { return self }
 
     func executeTransition(_ transition: FocusTransition<Window>) {

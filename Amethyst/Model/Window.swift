@@ -104,10 +104,10 @@ protocol WindowType: Equatable {
      */
     func move(toSpace spaceID: CGSSpaceID)
 
-    func focusLeft()
-    func focusDown()
-    func focusRight()
-    func focusUp()
+    func windowsToWest() -> [SIWindow]?
+    func windowsToEast() -> [SIWindow]?
+    func windowsToNorth() -> [SIWindow]?
+    func windowsToSouth() -> [SIWindow]?
 }
 
 /**

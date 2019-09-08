@@ -246,3 +246,16 @@ class StatefulLayout<Window: WindowType>: Layout<Window> {
         fatalError("Must be implemented by subclass")
     }
 }
+
+enum Direction {
+    case right
+    case down
+    case left
+    case up
+}
+
+class DirectionalLayout<Window: WindowType>: Layout<Window> {
+    func findWindowInDirection(source: Window, dir: Direction) -> Window? {
+        fatalError("Must be implemented by subclass")
+    }
+}
