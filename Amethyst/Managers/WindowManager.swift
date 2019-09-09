@@ -738,6 +738,9 @@ extension WindowManager: FocusTransitionTarget {
         }
 
         for window in found! {
+            if floatingMap[window.windowID()] ?? false != floatingMap[win.windowID()] ?? false {
+                continue
+            }
             if let fff: Application.Window = findWinowById(id: window.windowID()) {
                 return fff
             }
