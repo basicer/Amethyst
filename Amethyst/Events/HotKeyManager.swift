@@ -206,8 +206,8 @@ final class HotKeyManager<Application: ApplicationType>: NSObject {
         constructCommandWithCommandKey(CommandKey.toggleFloat.rawValue) {
             windowManager.toggleFloatForFocusedWindow()
         }
-        constructCommandWithCommandKey(CommandKey.dockAll.rawValue) {
-            windowManager.dockAll()
+        constructCommandWithCommandKey(CommandKey.sinkAll.rawValue) {
+            windowManager.sinkAll()
         }
 
         constructCommandWithCommandKey(CommandKey.toggleTiling.rawValue) {
@@ -408,7 +408,7 @@ final class HotKeyManager<Application: ApplicationType>: NSObject {
         hotKeyNameToDefaultsKey.append(["Move focus left", CommandKey.focusLeft.rawValue])
         hotKeyNameToDefaultsKey.append(["Move focus right", CommandKey.focusRight.rawValue])
 
-        hotKeyNameToDefaultsKey.append(["Dock All", CommandKey.dockAll.rawValue])
+        hotKeyNameToDefaultsKey.append(["Sink all windows", CommandKey.sinkAll.rawValue])
 
         return hotKeyNameToDefaultsKey
     }

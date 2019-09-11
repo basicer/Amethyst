@@ -221,7 +221,7 @@ final class WindowManager<Application: ApplicationType>: NSObject {
         markScreenForReflow(screen, withChange: windowChange)
     }
 
-    func dockAll() {
+    func sinkAll() {
         guard let focusedWindow = Window.currentlyFocused() else {
             return
         }
