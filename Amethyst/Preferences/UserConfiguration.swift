@@ -325,6 +325,12 @@ final class UserConfiguration: NSObject {
     }
 
     func constructCommand(for hotKeyRegistrar: HotKeyRegistrar, commandKey: String, handler: @escaping HotKeyHandler) {
+
+        constructCommandImpl(for: hotKeyRegistrar, commandKey: commandKey, handler: handler)
+        constructCommandImpl(for: hotKeyRegistrar, commandKey: commandKey + "-alt", handler: handler)
+    }
+
+    private func constructCommandImpl(for hotKeyRegistrar: HotKeyRegistrar, commandKey: String, handler: @escaping HotKeyHandler) {
         var override = false
         var command: [String: String]? = configuration?[commandKey].object as? [String: String]
         if command != nil {

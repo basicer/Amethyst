@@ -368,24 +368,24 @@ final class HotKeyManager<Application: ApplicationType>: NSObject {
         hotKeyNameToDefaultsKey.append(["Move focus to main window", CommandKey.focusMain.rawValue])
         hotKeyNameToDefaultsKey.append(["Move focus to counter clockwise screen", CommandKey.focusScreenCCW.rawValue])
         hotKeyNameToDefaultsKey.append(["Move focus to clockwise screen", CommandKey.focusScreenCW.rawValue])
-        hotKeyNameToDefaultsKey.append(["Swap focused window to counter clockwise screen", CommandKey.swapScreenCCW.rawValue])
-        hotKeyNameToDefaultsKey.append(["Swap focused window to clockwise screen", CommandKey.swapScreenCW.rawValue])
-        hotKeyNameToDefaultsKey.append(["Swap focused window counter clockwise", CommandKey.swapCCW.rawValue])
-        hotKeyNameToDefaultsKey.append(["Swap focused window clockwise", CommandKey.swapCW.rawValue])
-        hotKeyNameToDefaultsKey.append(["Swap focused window with main window", CommandKey.swapMain.rawValue])
+        hotKeyNameToDefaultsKey.append(["Swap window to counter clockwise screen", CommandKey.swapScreenCCW.rawValue])
+        hotKeyNameToDefaultsKey.append(["Swap window to clockwise screen", CommandKey.swapScreenCW.rawValue])
+        hotKeyNameToDefaultsKey.append(["Swap window counter clockwise", CommandKey.swapCCW.rawValue])
+        hotKeyNameToDefaultsKey.append(["Swap window clockwise", CommandKey.swapCW.rawValue])
+        hotKeyNameToDefaultsKey.append(["Swap window with main window", CommandKey.swapMain.rawValue])
         hotKeyNameToDefaultsKey.append(["Force windows to be reevaluated", CommandKey.reevaluateWindows.rawValue])
-        hotKeyNameToDefaultsKey.append(["Throw focused window to space left", CommandKey.throwSpaceLeft.rawValue])
-        hotKeyNameToDefaultsKey.append(["Throw focused window to space right", CommandKey.throwSpaceRight.rawValue])
+        hotKeyNameToDefaultsKey.append(["Throw window to space left", CommandKey.throwSpaceLeft.rawValue])
+        hotKeyNameToDefaultsKey.append(["Throw window to space right", CommandKey.throwSpaceRight.rawValue])
 
         (1...10).forEach { spaceNumber in
-            let name = "Throw focused window to space \(spaceNumber)"
+            let name = "Throw window to space \(spaceNumber)"
 
             hotKeyNameToDefaultsKey.append([name, "\(CommandKey.throwSpacePrefix.rawValue)-\(spaceNumber)"])
         }
 
         (1...4).forEach { screenNumber in
             let focusCommandName = "Focus screen \(screenNumber)"
-            let throwCommandName = "Throw focused window to screen \(screenNumber)"
+            let throwCommandName = "Throw window to screen \(screenNumber)"
             let focusCommandKey = "\(CommandKey.focusScreenPrefix.rawValue)-\(screenNumber)"
             let throwCommandKey = "\(CommandKey.throwScreenPrefix.rawValue)-\(screenNumber)"
 

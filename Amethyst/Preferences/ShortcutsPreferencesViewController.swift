@@ -39,6 +39,7 @@ final class ShortcutsPreferencesViewController: NSViewController, NSTableViewDat
 
         shortcutItemView.nameLabel?.stringValue = name
         shortcutItemView.shortcutView?.associatedUserDefaultsKey = key
+        shortcutItemView.shortcutView2?.associatedUserDefaultsKey = key + "-alt"
 
         return shortcutItemView
     }
