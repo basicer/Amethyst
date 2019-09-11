@@ -136,6 +136,7 @@ enum CommandKey: String {
     case focusLeft = "focus-left"
     case focusRight = "focus-right"
     case terminal = "terminal"
+    case dockAll = "dock-all"
 }
 
 protocol UserConfigurationDelegate: AnyObject {

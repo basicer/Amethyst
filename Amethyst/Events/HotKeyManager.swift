@@ -206,6 +206,9 @@ final class HotKeyManager<Application: ApplicationType>: NSObject {
         constructCommandWithCommandKey(CommandKey.toggleFloat.rawValue) {
             windowManager.toggleFloatForFocusedWindow()
         }
+        constructCommandWithCommandKey(CommandKey.dockAll.rawValue) {
+            windowManager.dockAll()
+        }
 
         constructCommandWithCommandKey(CommandKey.toggleTiling.rawValue) {
             self.userConfiguration.tilingEnabled = !self.userConfiguration.tilingEnabled
@@ -404,6 +407,9 @@ final class HotKeyManager<Application: ApplicationType>: NSObject {
         hotKeyNameToDefaultsKey.append(["Move focus down", CommandKey.focusDown.rawValue])
         hotKeyNameToDefaultsKey.append(["Move focus left", CommandKey.focusLeft.rawValue])
         hotKeyNameToDefaultsKey.append(["Move focus right", CommandKey.focusRight.rawValue])
+
+        hotKeyNameToDefaultsKey.append(["Dock All", CommandKey.dockAll.rawValue])
+
         return hotKeyNameToDefaultsKey
     }
 }
