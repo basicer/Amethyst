@@ -542,6 +542,9 @@ extension WindowManager: ApplicationObservationDelegate {
     }
 
     func application(_ application: AnyApplication<Application>, didMoveWindow window: Application.Window) {
+        if let ssss = window.screen() {
+            screenManager(for: ssss)?.setOutline(window)
+        }
         guard userConfiguration.mouseSwapsWindows() else {
             return
         }
@@ -549,7 +552,7 @@ extension WindowManager: ApplicationObservationDelegate {
         guard let screen = window.screen(), activeWindows(on: screen).contains(window) else {
             return
         }
-
+        screenManager(for: screen)?.setOutline(window)
         switch mouseStateKeeper.state {
         case .dragging:
             // be aware of last reflow time, again to prevent race condition

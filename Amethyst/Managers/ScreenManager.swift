@@ -67,6 +67,7 @@ final class ScreenManager<Window: WindowType>: NSObject {
     }
 
     private let layoutNameWindowController: LayoutNameWindowController
+    private let outlineWindowController: OutlineWindowController
 
     init(screen: NSScreen, screenIdentifier: String, delegate: ScreenManagerDelegate, userConfiguration: UserConfiguration) {
         self.screen = screen
@@ -81,6 +82,7 @@ final class ScreenManager<Window: WindowType>: NSObject {
         currentLayoutIndex = 0
 
         layoutNameWindowController = LayoutNameWindowController(windowNibName: "LayoutNameWindow")
+        outlineWindowController = OutlineWindowController(windowNibName: "OutlineWindow")
 
         super.init()
 
@@ -89,6 +91,20 @@ final class ScreenManager<Window: WindowType>: NSObject {
 
     deinit {
         self.onReflowCompletion = nil
+    }
+
+    func setOutline(_ rect: NSRect) {
+        if let ow = outlineWindowController.window as? OutlineWindow {
+            ow.setFrame(rect, display: true)
+            ow.orderFront(nil)
+            ow.orderFront(nil)
+        }
+    }
+
+    func setOutline(_ win: Window) {
+        if let ow = outlineWindowController.window as? OutlineWindow {
+            ow.outline(window: win)
+        }
     }
 
     func setNeedsReflowWithWindowChange(_ windowChange: Change<Window>) {

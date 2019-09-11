@@ -8,10 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		1A4B46EB20AA7717003D5110 /* NSTableView+Amethyst.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A4B46EA20AA7717003D5110 /* NSTableView+Amethyst.swift */; };
-		400540F22325CDF4004B8656 /* Reliability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 400540F12325CDF4004B8656 /* Reliability.swift */; };
+		216CEBFA232226BD00C9AFA2 /* OutlineWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216CEBF9232226BD00C9AFA2 /* OutlineWindow.swift */; };
 		21980B1E2324747D0065E9B6 /* Terminal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21980B1D2324747D0065E9B6 /* Terminal.swift */; };
 		21980B21232757FF0065E9B6 /* ITerm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21980B20232757FE0065E9B6 /* ITerm.swift */; };
 		21980B232327582C0065E9B6 /* Base.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21980B222327582C0065E9B6 /* Base.swift */; };
+		21980B252328B07F0065E9B6 /* OutlineWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21980B242328B07F0065E9B6 /* OutlineWindowController.swift */; };
+		21980B272328B0D90065E9B6 /* OutlineWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 21980B262328B0D90065E9B6 /* OutlineWindow.xib */; };
+		400540F22325CDF4004B8656 /* Reliability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 400540F12325CDF4004B8656 /* Reliability.swift */; };
 		4006CF881CDFF5F6004CA512 /* NSRunningApplication+Manageable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4006CF871CDFF5F6004CA512 /* NSRunningApplication+Manageable.swift */; };
 		4006CF8C1CDFF743004CA512 /* NSScreen+Amethyst.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4006CF8B1CDFF743004CA512 /* NSScreen+Amethyst.swift */; };
 		4006CF8E1CDFFE90004CA512 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4006CF8D1CDFFE90004CA512 /* AppDelegate.swift */; };
@@ -110,6 +113,9 @@
 		21980B1D2324747D0065E9B6 /* Terminal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Terminal.swift; sourceTree = "<group>"; };
 		21980B20232757FE0065E9B6 /* ITerm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ITerm.swift; sourceTree = "<group>"; };
 		21980B222327582C0065E9B6 /* Base.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Base.swift; sourceTree = "<group>"; };
+		216CEBF9232226BD00C9AFA2 /* OutlineWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutlineWindow.swift; sourceTree = "<group>"; };
+		21980B242328B07F0065E9B6 /* OutlineWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutlineWindowController.swift; sourceTree = "<group>"; };
+		21980B262328B0D90065E9B6 /* OutlineWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OutlineWindow.xib; sourceTree = "<group>"; };
 		22CAB58F56F91369E2D69B06 /* Pods_Amethyst.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Amethyst.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B6FF5614ED7F7BAE9D4A60C /* Pods-AmethystTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AmethystTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AmethystTests/Pods-AmethystTests.debug.xcconfig"; sourceTree = "<group>"; };
 		400540F12325CDF4004B8656 /* Reliability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reliability.swift; sourceTree = "<group>"; };
@@ -447,9 +453,12 @@
 			isa = PBXGroup;
 			children = (
 				40B3927B1814967F009A296B /* LayoutNameWindow.xib */,
+				21980B262328B0D90065E9B6 /* OutlineWindow.xib */,
 				401BC8A51CE8E65D00F89B3F /* LayoutNameWindow.swift */,
 				4058C46E1C4B119500B19D26 /* LayoutNameWindowController.swift */,
 				40C1357B1F202AEE00FF9FA7 /* PreferencesWindow.swift */,
+				216CEBF9232226BD00C9AFA2 /* OutlineWindow.swift */,
+				21980B242328B07F0065E9B6 /* OutlineWindowController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -572,6 +581,7 @@
 				4058C47A1C54113D00B19D26 /* GeneralPreferencesViewController.xib in Resources */,
 				40111CCD22342CF3003D20BD /* DebugPreferencesViewController.xib in Resources */,
 				402DB6EC1742E41A00D1C936 /* InfoPlist.strings in Resources */,
+				21980B272328B0D90065E9B6 /* OutlineWindow.xib in Resources */,
 				402DB6F21742E41A00D1C936 /* Credits.rtf in Resources */,
 				40AF71DA20BB348300F58EA9 /* Images.xcassets in Resources */,
 				402DB6F81742E41A00D1C936 /* MainMenu.xib in Resources */,
@@ -733,6 +743,7 @@
 				4006CF881CDFF5F6004CA512 /* NSRunningApplication+Manageable.swift in Sources */,
 				401BC89A1CE8C6AE00F89B3F /* HotKeyManager.swift in Sources */,
 				4062AD2F1C1F9D6B00DB612B /* TallLayout.swift in Sources */,
+				21980B252328B07F0065E9B6 /* OutlineWindowController.swift in Sources */,
 				401BC89C1CE8D58A00F89B3F /* ShortcutsPreferencesListItemView.swift in Sources */,
 				400540F22325CDF4004B8656 /* Reliability.swift in Sources */,
 				4029C4F11C112478001E4788 /* Layout.swift in Sources */,
@@ -766,6 +777,7 @@
 				40C1357C1F202AEE00FF9FA7 /* PreferencesWindow.swift in Sources */,
 				4062AD351C1FA62500DB612B /* WideLayout.swift in Sources */,
 				40111CCB22342CC4003D20BD /* DebugPreferencesViewController.swift in Sources */,
+				216CEBFA232226BD00C9AFA2 /* OutlineWindow.swift in Sources */,
 				401C35B32244650F0019ED07 /* MouseState.swift in Sources */,
 				4062AD2D1C1F9B8B00DB612B /* FullscreenLayout.swift in Sources */,
 				40637075224EFED70081299D /* CGInfo.swift in Sources */,
