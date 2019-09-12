@@ -46,6 +46,7 @@ final class OutlineWindow: NSWindow {
     }
 
     func outline<Window: WindowType>(window: Window) {
+        return
         let ow = self
         let oss = window.screen()
         let tf = window.frame()
